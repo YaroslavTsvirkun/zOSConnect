@@ -1,0 +1,10 @@
+C:\Users\User\source\repos\Connect\Connect\bin\Release\Connect.exe.config
+C:\Users\User\source\repos\Connect\Connect\bin\Release\Connect.exe
+C:\Users\User\source\repos\Connect\Connect\bin\Release\Connect.pdb
+C:\Users\User\source\repos\Connect\Connect\bin\Release\IBM.CTG.Client.dll
+C:\Users\User\source\repos\Connect\Connect\bin\Release\IBM.CTG.Client.xml
+C:\Users\User\source\repos\Connect\Connect\obj\Release\Connect.csprojAssemblyReference.cache
+C:\Users\User\source\repos\Connect\Connect\obj\Release\Connect.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Connect\Connect\obj\Release\Connect.csproj.CopyComplete
+C:\Users\User\source\repos\Connect\Connect\obj\Release\Connect.exe
+C:\Users\User\source\repos\Connect\Connect\obj\Release\Connect.pdb

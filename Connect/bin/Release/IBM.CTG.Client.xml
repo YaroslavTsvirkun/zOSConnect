@@ -1,0 +1,1043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+CICS TG .NET Documentation File
+
+Licensed Materials - Property of IBM
+
+"Restricted Materials of IBM"
+
+5724-I81,5725-B65,5655-Y20
+
+(C) Copyright IBM Corp. 2011, 2016
+
+US Government Users Restricted Rights - Use, duplication or
+disclosure restricted by GSA ADP Schedule Contract with
+IBM Corp.
+
+Status: Version 9 Release 2 
+-->
+<doc>
+  <assembly>
+    <name>IBM.CTG.Client</name>
+  </assembly>
+  <members>
+    <member name="T:IBM.CTG.Channel">
+      <summary>A named collection of <see cref="T:IBM.CTG.Container" /> objects that can be passed to a CICS program.</summary>
+    </member>
+    <member name="P:IBM.CTG.Channel.Name">
+      <summary>Gets the name of the <see cref="T:IBM.CTG.Channel" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.Channel.#ctor(System.String)">
+      <summary>Constructs a new <see cref="T:IBM.CTG.Channel" />.</summary>
+      <param name="name">The name of the <see cref="T:IBM.CTG.Channel" />.</param>
+      <exception cref="T:IBM.CTG.InvalidNameException">An invalid name was specified for the <see cref="T:IBM.CTG.Channel" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is <see langword="null" />.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.CreateContainer(System.String,System.Byte[])">
+      <summary>Creates a new <see cref="T:IBM.CTG.Container" /> of type <see cref="F:IBM.CTG.ContainerType.BIT" /> within this <see cref="T:IBM.CTG.Channel" />.</summary>
+      <param name="containerName">The name of the new <see cref="T:IBM.CTG.Container" />.</param>
+      <param name="bitData">A byte array to be placed in the <see cref="T:IBM.CTG.Container" />.</param>
+      <returns>The newly created <see cref="T:IBM.CTG.Container" />.</returns>
+      <exception cref="T:IBM.CTG.InvalidNameException">An invalid name was specified for the <see cref="T:IBM.CTG.Container" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is <see langword="null" />.</exception>
+      <exception cref="T:IBM.CTG.ContainerExistsException">A <see cref="T:IBM.CTG.Container" /> with the same name already exists within the <see cref="T:IBM.CTG.Channel" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.Channel" /> has been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.CreateContainer(System.String,System.Byte[],System.Int32)">
+      <summary>Creates a new <see cref="T:IBM.CTG.Container" /> of type <see cref="F:IBM.CTG.ContainerType.CHAR" /> within this <see cref="T:IBM.CTG.Channel" />.</summary>
+      <param name="containerName">The name of the new <see cref="T:IBM.CTG.Container" />.</param>
+      <param name="charData">A byte array to be placed in the <see cref="T:IBM.CTG.Container" />.</param>
+      <param name="ccsid">The CCSID of the character data supplied.</param>
+      <returns>The newly created <see cref="T:IBM.CTG.Container" />.</returns>
+      <exception cref="T:IBM.CTG.InvalidNameException">An invalid name was specified for the <see cref="T:IBM.CTG.Container" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="ccsid" /> is set to zero or a negative number.</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="ccsid" /> is not a supported CCSID.</exception>
+      <exception cref="T:IBM.CTG.ContainerExistsException">A <see cref="T:IBM.CTG.Container" /> with the same name already exists within the <see cref="T:IBM.CTG.Channel" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.Channel" /> has been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.CreateContainer(System.String,System.String)">
+      <summary>Creates a new <see cref="T:IBM.CTG.Container" /> of type <see cref="F:IBM.CTG.ContainerType.CHAR" /> within this <see cref="T:IBM.CTG.Channel" />.</summary>
+      <param name="containerName">The name of the new <see cref="T:IBM.CTG.Container" />.</param>
+      <param name="charData">A <see cref="T:System.String" /> to be placed in the <see cref="T:IBM.CTG.Container" />.</param>
+      <returns>The newly created <see cref="T:IBM.CTG.Container" />.</returns>
+      <exception cref="T:IBM.CTG.InvalidNameException">An invalid name was specified for the <see cref="T:IBM.CTG.Container" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> is <see langword="null" />.</exception>
+      <exception cref="T:IBM.CTG.ContainerExistsException">A <see cref="T:IBM.CTG.Container" /> with the same name already exists within the <see cref="T:IBM.CTG.Channel" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.Channel" /> has been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.GetContainer(System.String)">
+      <summary>Gets a named <see cref="T:IBM.CTG.Container" /> from the <see cref="T:IBM.CTG.Channel" />.</summary>
+      <param name="containerName">The name of the <see cref="T:IBM.CTG.Container" /> to retrieve.</param>
+      <returns>The <see cref="T:IBM.CTG.Container" /> with the specified name.</returns>
+      <exception cref="T:IBM.CTG.ContainerNotFoundException">A <see cref="T:IBM.CTG.Container" /> with the specified name was not found in the <see cref="T:IBM.CTG.Channel" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.Channel" /> has been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.GetContainers">
+      <summary>Returns an array of all <see cref="T:IBM.CTG.Container">Containers</see> held within this <see cref="T:IBM.CTG.Channel" />.</summary>
+      <returns>Returns an array of all <see cref="T:IBM.CTG.Container">Containers</see> held within this <see cref="T:IBM.CTG.Channel" />.</returns>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.Channel" /> has been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.GetContainerNames">
+      <summary>Gets the names of all <see cref="T:IBM.CTG.Container">Containers</see> in the <see cref="T:IBM.CTG.Channel" />.</summary>
+      <returns>An array of Strings containing the names of all <see cref="T:IBM.CTG.Container">Containers</see> held within this <see cref="T:IBM.CTG.Channel" />.</returns>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.Channel" /> has been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.DeleteContainer(System.String)">
+      <summary>Deletes the specified <see cref="T:IBM.CTG.Container" /> from this <see cref="T:IBM.CTG.Channel" />.</summary>
+      <param name="name">The name of the <see cref="T:IBM.CTG.Container" /> to delete.</param>
+      <exception cref="T:IBM.CTG.ContainerNotFoundException">A <see cref="T:IBM.CTG.Container" /> with the specified name was not found in the <see cref="T:IBM.CTG.Channel" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.Channel" /> has been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Channel.Dispose">
+      <summary>Frees any resources associated with the <see cref="T:IBM.CTG.Channel" />.</summary>
+    </member>
+    <member name="T:IBM.CTG.CicsServer">
+      <summary>Represents a CICS server defined in a Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.CicsServer.Name">
+      <summary>Gets the name of the CICS server as defined in the Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.CicsServer.Description">
+      <summary>Gets the description of the CICS server as defined in the Gateway daemon.</summary>
+    </member>
+    <member name="M:IBM.CTG.CicsServer.#ctor(System.String,System.String)">
+      <summary>Constructs a new <see cref="T:IBM.CTG.CicsServer" />.</summary>
+      <param name="name">The name of the CICS server as defined in the Gateway daemon.</param>
+      <param name="description">A description of the CICS server.</param>
+    </member>
+    <member name="M:IBM.CTG.CicsServer.GetHashCode">
+      <summary>Returns a hash code for this instance.</summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+    </member>
+    <member name="M:IBM.CTG.CicsServer.Equals(IBM.CTG.CicsServer)">
+      <summary>Returns a value indicating whether this instance represents the same CICS server as a specified <see cref="T:IBM.CTG.CicsServer" />.</summary>
+      <param name="other">A <see cref="T:IBM.CTG.CicsServer" /> to compare with this instance.</param>
+      <returns>
+        <see langword="true" /> if this instance and <paramref name="other" /> have the same <see cref="P:IBM.CTG.CicsServer.Name" />; otherwise <see langword="false" />.</returns>
+    </member>
+    <member name="M:IBM.CTG.CicsServer.Equals(System.Object)">
+      <summary>Returns a value indicating whether this instance is equal to a specified object.</summary>
+      <param name="obj">An object to compare with this instance.</param>
+      <returns>
+        <see langword="true" /> if <paramref name="obj" /> is a <see cref="T:IBM.CTG.CicsServer" /> with the same <see cref="P:IBM.CTG.CicsServer.Name" /> as this instance; otherwise <see langword="false" />.</returns>
+    </member>
+    <member name="M:IBM.CTG.CicsServer.ToString">
+      <summary>Returns the name of the CICS server represented by this instance.</summary>
+      <returns>The name of the CICS server represented by this instance.</returns>
+    </member>
+    <member name="M:IBM.CTG.CicsServer.op_Equality(IBM.CTG.CicsServer,IBM.CTG.CicsServer)">
+      <summary>Determines whether two <see cref="T:IBM.CTG.CicsServer" /> instances represent the same CICS server.</summary>
+      <param name="cs1">A <see cref="T:IBM.CTG.CicsServer" />.</param>
+      <param name="cs2">A <see cref="T:IBM.CTG.CicsServer" />.</param>
+      <returns>
+        <see langword="true" /> if <paramref name="cs1" /> and <paramref name="cs2" /> have the same <see cref="P:IBM.CTG.CicsServer.Name" />; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:IBM.CTG.CicsServer.op_Inequality(IBM.CTG.CicsServer,IBM.CTG.CicsServer)">
+      <summary>Determines whether two <see cref="T:IBM.CTG.CicsServer" /> instances do not represent the same CICS server.</summary>
+      <param name="cs1">A <see cref="T:IBM.CTG.CicsServer" />.</param>
+      <param name="cs2">A <see cref="T:IBM.CTG.CicsServer" />.</param>
+      <returns>
+        <see langword="true" /> if <paramref name="cs1" /> and <paramref name="cs2" /> do not have the same <see cref="P:IBM.CTG.CicsServer.Name" />; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="T:IBM.CTG.ClientConfigurationException">
+      <summary>The exception that is thrown when an error in the application configuration file is detected.</summary>
+    </member>
+    <member name="M:IBM.CTG.ClientConfigurationException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ClientConfigurationException" /> class.</summary>
+    </member>
+    <member name="M:IBM.CTG.ClientConfigurationException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ClientConfigurationException" /> class with a specified error message.</summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:IBM.CTG.ClientConfigurationException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ClientConfigurationException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="inner">The exception that is the cause of the current exception. If the inner parameter is not <see langword="null" />, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:IBM.CTG.ClientConfigurationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ClientConfigurationException" /> class with serialized data.</summary>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+    </member>
+    <member name="T:IBM.CTG.Container">
+      <summary>A uniquely named block of data which is held in a <see cref="T:IBM.CTG.Channel" />.</summary>
+    </member>
+    <member name="P:IBM.CTG.Container.Name">
+      <summary>Gets the name of the <see cref="T:IBM.CTG.Container" />.</summary>
+    </member>
+    <member name="P:IBM.CTG.Container.Ccsid">
+      <summary>Gets the CCSID of the <see cref="T:IBM.CTG.Container" />.</summary>
+    </member>
+    <member name="P:IBM.CTG.Container.Type">
+      <summary>Gets the type of the <see cref="T:IBM.CTG.Container" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.Container.GetBitData">
+      <summary>Gets binary data from a <see cref="F:IBM.CTG.ContainerType.BIT" /><see cref="T:IBM.CTG.Container" />.</summary>
+      <returns>A byte array of data held in the <see cref="T:IBM.CTG.Container" />.</returns>
+      <exception cref="T:IBM.CTG.ContainerTypeException">The <see cref="T:IBM.CTG.Container" /> is not of type <see cref="F:IBM.CTG.ContainerType.BIT" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">When this <see cref="T:IBM.CTG.Container" /> has already been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Container.GetCharData">
+      <summary>Gets character data from a <see cref="F:IBM.CTG.ContainerType.CHAR" /><see cref="T:IBM.CTG.Container" />. 
+      Data is automatically converted from the code page of the container.</summary>
+      <returns>The data held in the <see cref="T:IBM.CTG.Container" />.</returns>
+      <exception cref="T:IBM.CTG.ContainerTypeException">The <see cref="T:IBM.CTG.Container" /> is not of type <see cref="F:IBM.CTG.ContainerType.CHAR" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">When this <see cref="T:IBM.CTG.Container" /> has already been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Container.SetData(System.Byte[])">
+      <summary>Sets the contents of a <see cref="T:IBM.CTG.Container" /> that is of type <see cref="F:IBM.CTG.ContainerType.BIT" />.</summary>
+      <param name="bitData">The data to put into the <see cref="T:IBM.CTG.Container" />.</param>
+      <exception cref="T:IBM.CTG.ContainerTypeException">The <see cref="T:IBM.CTG.Container" /> is not of type <see cref="F:IBM.CTG.ContainerType.BIT" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">When this <see cref="T:IBM.CTG.Container" /> has already been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Container.SetData(System.String)">
+      <summary>Sets the contents of a <see cref="T:IBM.CTG.Container" /> that is of type <see cref="F:IBM.CTG.ContainerType.CHAR" />.</summary>
+      <param name="charData">The <see cref="T:System.String" /> data to put into the <see cref="T:IBM.CTG.Container" />.</param>
+      <exception cref="T:IBM.CTG.ContainerTypeException">The <see cref="T:IBM.CTG.Container" /> is not of type <see cref="F:IBM.CTG.ContainerType.CHAR" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">When this <see cref="T:IBM.CTG.Container" /> has already been disposed.</exception>
+    </member>
+    <member name="M:IBM.CTG.Container.Dispose">
+      <summary>Frees any resources associated with the <see cref="T:IBM.CTG.Container" />.</summary>
+    </member>
+    <member name="T:IBM.CTG.ContainerExistsException">
+      <summary>The exception that is thrown when an attempt is made to create a <see cref="T:IBM.CTG.Container" /> with the same name as one
+      that already exists within a <see cref="T:IBM.CTG.Channel" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.ContainerExistsException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerExistsException" /> class.</summary>
+    </member>
+    <member name="M:IBM.CTG.ContainerExistsException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerExistsException" /> class with a specified error message.</summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:IBM.CTG.ContainerExistsException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerExistsException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="inner">The exception that is the cause of the current exception. If the inner parameter is not <see langword="null" />, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:IBM.CTG.ContainerExistsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerExistsException" /> class with serialized data.</summary>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+    </member>
+    <member name="T:IBM.CTG.ContainerNotFoundException">
+      <summary>The exception that is thrown when an attempt is made to access a <see cref="T:IBM.CTG.Container" /> that does not exist within a <see cref="T:IBM.CTG.Channel" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.ContainerNotFoundException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerNotFoundException" /> class.</summary>
+    </member>
+    <member name="M:IBM.CTG.ContainerNotFoundException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerNotFoundException" /> class with a specified error message.</summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:IBM.CTG.ContainerNotFoundException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerNotFoundException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="inner">The exception that is the cause of the current exception. If the inner parameter is not <see langword="null" />, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:IBM.CTG.ContainerNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerNotFoundException" /> class with serialized data.</summary>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+    </member>
+    <member name="T:IBM.CTG.ContainerTypeException">
+      <summary>The exception that is thrown when an attempt is made to access a <see cref="T:IBM.CTG.Container" /> using methods that are not appropriate for its type.</summary>
+    </member>
+    <member name="M:IBM.CTG.ContainerTypeException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerTypeException" /> class.</summary>
+    </member>
+    <member name="M:IBM.CTG.ContainerTypeException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerTypeException" /> class with a specified error message.</summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:IBM.CTG.ContainerTypeException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerTypeException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="inner">The exception that is the cause of the current exception. If the inner parameter is not <see langword="null" />, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:IBM.CTG.ContainerTypeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.ContainerTypeException" /> class with serialized data.</summary>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+    </member>
+    <member name="T:IBM.CTG.EciRequest">
+      <summary>Represents a CICS External Call Interface (ECI) request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.Program">
+      <summary>Gets or sets the name of the CICS program to call.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.UserId">
+      <summary>Gets or sets the CICS user id to use for the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.Password">
+      <summary>Gets or sets the CICS password or password phrase to use for the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.TransId">
+      <summary>Gets or sets the identifier of the transaction used when linking to the CICS program.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.MirrorTransId">
+      <summary>Gets or sets the identifier of the mirror transaction that will be used to process the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.LuwToken">
+      <summary>Gets or sets the logical unit of work (LUW) token for the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.ExtendMode">
+      <summary>Gets or sets the extended behavior for the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.AbendCode">
+      <summary>Gets the abend code returned from CICS.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.CommareaInboundLength">
+      <summary>Gets or sets the limit on the COMMAREA length returned from the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.CommareaOutboundLength">
+      <summary>Gets or sets the limit on the COMMAREA length sent with the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.Timeout">
+      <summary>Gets or sets the timeout period for the request.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">The value specified is negative.</exception>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.ServerName">
+      <summary>Gets or sets the name of the CICS server to run the program on, as defined in the Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.EciReturnCode">
+      <summary>Gets the ECI return code from the most recent flow of this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.ReturnCode">
+      <summary>Gets the return code from the most recent flow of this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.ReturnCodeString">
+      <summary>Gets a string representation of <see cref="P:IBM.CTG.EciRequest.ReturnCode" />.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.CommareaLength">
+      <summary>Gets the length of the COMMAREA associated with the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.Channel">
+      <summary>Gets or sets the <see cref="T:IBM.CTG.Channel" /> on the EciRequest.</summary>
+    </member>
+    <member name="P:IBM.CTG.EciRequest.HasChannel">
+      <summary>Gets a value indicating whether a valid <see cref="T:IBM.CTG.Channel" /> is associated with the request.</summary>
+    </member>
+    <member name="M:IBM.CTG.EciRequest.#ctor">
+      <summary>
+        Creates a new <see cref="T:IBM.CTG.EciRequest" />.
+      </summary>
+    </member>
+    <member name="M:IBM.CTG.EciRequest.GetCommareaData">
+      <summary>Copies the COMMAREA data associated with the request into a new array.</summary>
+      <returns>
+        An array of bytes representing the COMMAREA associated with the request, or <see langword="null" /> if no COMMAREA has been set.
+      </returns>
+    </member>
+    <member name="M:IBM.CTG.EciRequest.GetCommareaData(System.Byte[])">
+      <summary>Copies the COMMAREA data associated with the request into the specified array.</summary>
+      <param name="array">A byte array to copy the COMMAREA data into.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">The size of the COMMAREA data is greater than the length of <paramref name="array" />.</exception>
+    </member>
+    <member name="M:IBM.CTG.EciRequest.SetCommareaData(System.Byte[])">
+      <summary>Sets the COMMAREA data associated with the request.</summary>
+      <param name="commarea">A byte array containing the COMMAREA data, or <see langword="null" /> to specify no COMMAREA.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        The length of <paramref name="commarea" /> exceeds the maximum value of an <see cref="T:System.Int16" /> (32767).
+      </exception>
+    </member>
+    <member name="M:IBM.CTG.EciRequest.Finalize">
+      <summary>
+        Ensures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the <see cref="T:IBM.CTG.EciRequest" />.
+      </summary>
+    </member>
+    <member name="T:IBM.CTG.EsiChangeRequest">
+      <summary>Represents a CICS External Security Interface (ESI) change request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiChangeRequest.NewPassword">
+      <summary>Gets or sets the new CICS password or password phrase to use for the request.</summary>
+    </member>
+    <member name="M:IBM.CTG.EsiChangeRequest.#ctor(System.String,System.String,System.String,System.String)">
+      <summary>
+      Creates a new <see cref="T:IBM.CTG.EsiChangeRequest" />.
+      </summary>
+      <param name="userId">The CICS user ID to use for the request.</param>
+      <param name="currentPassword">The current CICS password or password phrase to use for the request.</param>
+      <param name="newPassword">The new CICS password or password phrase to use for the request.</param>
+      <param name="serverName">The name of the CICS server to verify with, as defined in the Gateway daemon. The server used by the Gateway daemon may be changed depending on the high availability configuration.</param>
+    </member>
+    <member name="T:IBM.CTG.EsiVerifyRequest">
+      <summary>Represents a CICS External Security Interface (ESI) verify request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.ServerName">
+      <summary>Gets or sets the name of the CICS server to verify with, as defined in the Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.UserId">
+      <summary>Gets or sets the CICS user ID to use for the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.Password">
+      <summary>Gets or sets the CICS password or password phrase to use for the request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.LastVerified">
+      <summary>Gets the date and time that the user ID was verified by this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.LastAccessed">
+      <summary>Gets the date and time that the user ID was accessed by this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.PasswordExpires">
+      <summary>Gets the date and time that the current password or password phrase expires.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.PasswordExpiresSet">
+      <summary>
+          Gets a boolean value indicating whether the <see cref="P:IBM.CTG.EsiVerifyRequest.PasswordExpires" /> property
+          has been set.
+        </summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.InvalidCount">
+      <summary>Gets the number of times the user ID failed validation prior to this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.EsiReturnCode">
+      <summary>Gets the ESI return code from the most recent flow of this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.ReturnCode">
+      <summary>Gets the return code from the most recent flow of this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.EsiVerifyRequest.ReturnCodeString">
+      <summary>Gets a string representation of <see cref="P:IBM.CTG.EsiVerifyRequest.ReturnCode" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.EsiVerifyRequest.#ctor(System.String,System.String,System.String)">
+      <summary>
+      Creates a new <see cref="T:IBM.CTG.EsiVerifyRequest" />.
+      </summary>
+      <param name="userId">The CICS user ID to use for the request.</param>
+      <param name="password">The CICS password or password phrase to use for the request.</param>
+      <param name="serverName">The name of the CICS server to verify with, as defined in the Gateway daemon. The server used by the Gateway daemon may be changed depending on the high availability configuration.</param>
+    </member>
+    <member name="T:IBM.CTG.GatewayConnection">
+      <summary>Represents a connection to a Gateway daemon.</summary>
+    </member>
+    <member name="M:IBM.CTG.GatewayConnection.#ctor(System.String,System.Int32)">
+      <summary>Creates a new connection to a Gateway daemon.</summary>
+      <param name="hostName">The host name of the Gateway daemon to connect to.</param>
+      <param name="port">The port that the Gateway daemon is accepting TCP/IP requests on.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> is <see langword="null" />.
+      </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">The port number is not valid.</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        The host name did not resolve to a valid IP address.
+      -or-
+   
+        Failed to establish a connection with the Gateway daemon.
+      -or-
+   
+        The connection to the Gateway daemon has been lost. 
+      </exception>
+      <exception cref="T:System.Security.SecurityException">A caller higher in the call stack does not have permission for the
+      requested operation.</exception>
+      <exception cref="T:IBM.CTG.ClientConfigurationException">
+        The value of CtgApplid or CtgApplidQualifier specified in the application configuration file is longer than 8 characters.
+      </exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="M:IBM.CTG.GatewayConnection.#ctor(System.String,System.Int32,System.Int32)">
+      <summary>Creates a new connection to a Gateway daemon with the specified timeout.</summary>
+      <param name="hostName">The host name of the Gateway daemon to connect to.</param>
+      <param name="port">The port that the Gateway daemon is accepting TCP/IP requests on.</param>
+      <param name="timeout">The connection timeout, in seconds, or zero to specify no timeout.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> is <see langword="null" />.
+      </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        The port number is not valid.
+      -or-
+   The timeout value is not valid.
+      </exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        The host name did not resolve to a valid IP address.
+      -or-
+   
+        The connection timed out.
+      -or-
+   
+        Failed to establish a connection with the Gateway daemon.
+      -or-
+   
+        The connection to the Gateway daemon has been lost. 
+      </exception>
+      <exception cref="T:System.Security.SecurityException">A caller higher in the call stack does not have permission for the
+      requested operation.</exception>
+      <exception cref="T:IBM.CTG.ClientConfigurationException">
+        The value of CtgApplid or CtgApplidQualifier specified in the application configuration file is longer than 8 characters.
+      </exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="M:IBM.CTG.GatewayConnection.#ctor(System.String,System.Int32,System.Int32,System.String,System.String)">
+      <summary>Creates a new connection to a Gateway daemon with the specified timeout. The connection will use the specified APPLID 
+      and APPLID qualifier for transaction tracking.</summary>
+      <param name="hostName">The host name of the Gateway daemon to connect to.</param>
+      <param name="port">The port that the Gateway daemon is accepting TCP/IP requests on.</param>
+      <param name="timeout">The connection timeout, in seconds, or zero to specify no timeout.</param>
+      <param name="applid">The client APPLID (maximum 8 characters).</param>
+      <param name="applidQualifier">The client APPLID qualifier (maximum 8 characters).</param>
+      <exception cref="T:System.ArgumentException">
+        Value of <paramref name="applid" /> or <paramref name="applidQualifier" /> is longer than 8 characters.
+      </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> is <see langword="null" />.
+      </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        The port number is not valid.
+      -or-
+   The timeout value is not valid.
+      </exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        The host name did not resolve to a valid IP address.
+      -or-
+   
+        The connection timed out.
+      -or-
+   
+        Failed to establish a connection with the Gateway daemon.
+      -or-
+   
+        The connection to the Gateway daemon has been lost. 
+      </exception>
+      <exception cref="T:System.Security.SecurityException">A caller higher in the call stack does not have permission for the
+      requested operation.</exception>
+      <exception cref="T:IBM.CTG.ClientConfigurationException">
+        The value of CtgApplid or CtgApplidQualifier specified in the application configuration file is longer than 8 characters.
+      </exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="P:IBM.CTG.GatewayConnection.HostName">
+      <summary>
+        Gets the host name of the Gateway daemon this <see cref="T:IBM.CTG.GatewayConnection" /> is or was connected to.
+      </summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayConnection.Port">
+      <summary>Gets the remote TCP/IP port this <see cref="T:IBM.CTG.GatewayConnection" /> is or was connected to.</summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayConnection.IsOpen">
+      <summary>Gets a value indicating whether this <see cref="T:IBM.CTG.GatewayConnection" /> is connected to a Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayConnection.Applid">
+      <summary>Gets the client APPLID used for transaction tracking on this <see cref="T:IBM.CTG.GatewayConnection" />.</summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayConnection.ApplidQualifier">
+      <summary>Gets the client APPLID qualifier used for transaction tracking on this <see cref="T:IBM.CTG.GatewayConnection" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.GatewayConnection.Close">
+      <summary>Closes the connection to the Gateway daemon.</summary>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="M:IBM.CTG.GatewayConnection.ListSystems">
+      <summary>Retrieves a list of the CICS servers defined in the Gateway daemon.</summary>
+      <returns>A list of <see cref="T:IBM.CTG.CicsServer" /> instances representing the CICS servers defined in the Gateway daemon.</returns>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.GatewayConnection" /> has been closed.</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">The connection to the Gateway daemon has been lost.</exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="M:IBM.CTG.GatewayConnection.Flow(IBM.CTG.GatewayRequest)">
+      <summary>
+        Flows a <see cref="T:IBM.CTG.GatewayRequest" /> to the Gateway daemon.
+      </summary>
+      <param name="request">
+        The <see cref="T:IBM.CTG.GatewayRequest" /> to flow.
+      </param>
+      <returns>
+        The return code from the request. The possible values depend upon the type of <see cref="T:IBM.CTG.GatewayRequest" /> that was flowed.
+      </returns>
+      <exception cref="T:System.ObjectDisposedException">The <see cref="T:IBM.CTG.GatewayConnection" /> has been closed.</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">The connection to the Gateway daemon has been lost.</exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="T:IBM.CTG.GatewayException">
+      <summary>The exception that is thrown when an error occurs within a Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayException.ReturnCode">
+      <summary>Gets the Gateway daemon return code associated with this <see cref="T:IBM.CTG.GatewayException" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.GatewayException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.GatewayException" /> class.</summary>
+    </member>
+    <member name="M:IBM.CTG.GatewayException.#ctor(System.Int32)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.GatewayException" /> class with a specified Gateway daemon return code.</summary>
+      <param name="returnCode">A Gateway daemon return code to associate with this instance.</param>
+    </member>
+    <member name="M:IBM.CTG.GatewayException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.GatewayException" /> class with a specified error message.</summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:IBM.CTG.GatewayException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.GatewayException" /> class with serialized data.</summary>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+    </member>
+    <member name="M:IBM.CTG.GatewayException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.GatewayException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="inner">The exception that is the cause of the current exception. If the inner parameter is not <see langword="null" />, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:IBM.CTG.GatewayException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Adds serialized data into a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object.</summary>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+    </member>
+    <member name="T:IBM.CTG.GatewayRequest">
+      <summary>Base class for requests that can be sent to a Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayRequest.GatewayReturnCode">
+      <summary>Gets the Gateway daemon return code from the most recent flow of this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayRequest.ReturnCode">
+      <summary>Gets the return code from the most recent flow of this request.</summary>
+    </member>
+    <member name="P:IBM.CTG.GatewayRequest.ReturnCodeString">
+      <summary>Gets a string representation of <see cref="P:IBM.CTG.GatewayRequest.ReturnCode" />.</summary>
+    </member>
+    <member name="T:IBM.CTG.InvalidNameException">
+      <summary>The exception that is thrown when there is an attempt to create a <see cref="T:IBM.CTG.Channel" /> or
+      <see cref="T:IBM.CTG.Container" /> with a name that is not valid.</summary>
+    </member>
+    <member name="M:IBM.CTG.InvalidNameException.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.InvalidNameException" /> class.</summary>
+    </member>
+    <member name="M:IBM.CTG.InvalidNameException.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.InvalidNameException" /> class with a specified error message.</summary>
+      <param name="message">The message that describes the error.</param>
+    </member>
+    <member name="M:IBM.CTG.InvalidNameException.#ctor(System.String,System.Exception)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.InvalidNameException" /> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
+      <param name="message">The error message that explains the reason for the exception.</param>
+      <param name="inner">The exception that is the cause of the current exception. If the inner parameter is not <see langword="null" />, the current exception is raised in a catch block that handles the inner exception.</param>
+    </member>
+    <member name="M:IBM.CTG.InvalidNameException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Initializes a new instance of the <see cref="T:IBM.CTG.InvalidNameException" /> class with serialized data.</summary>
+      <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
+      <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+    </member>
+    <member name="N:IBM.CTG">
+      <summary>Contains classes for accessing CICS servers using the CICS Transaction Gateway.</summary>
+    </member>
+    <member name="T:IBM.CTG.EciExtendMode">
+      <summary>Specifies whether an <see cref="T:IBM.CTG.EciRequest" /> should start, continue, or end a logical unit of work (LUW).</summary>
+    </member>
+    <member name="F:IBM.CTG.EciExtendMode.EciNoExtend">
+      <summary>Execute the request and commit all changes to recoverable resources.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciExtendMode.EciExtended">
+      <summary>If <see cref="P:IBM.CTG.EciRequest.LuwToken" /> is zero, start a new logical unit of work (LUW). Otherwise execute the request within an existing LUW.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciExtendMode.EciCommit">
+      <summary>Terminate the logical unit of work (LUW), committing all changes to recoverable resources.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciExtendMode.EciBackOut">
+      <summary>Terminate the logical unit of work (LUW), backing out all changes to recoverable resources.</summary>
+    </member>
+    <member name="T:IBM.CTG.GatewayReturnCode">
+      <summary>Defines return codes returned by a Gateway daemon.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgNoError">
+      <summary>No error.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgErrUnknownRequestType">
+      <summary>Obsolete. No longer used.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgErrGatewayClosed">
+      <summary>The Gateway daemon is closing.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgErrWorkWasRefused">
+      <summary>The Gateway daemon refused the request because no worker threads were available or the Gateway daemon is closing.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgErrExceptionInGateway">
+      <summary>An exception occurred in the Gateway daemon.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgErrGatewayBackLevel">
+      <summary>The connection failed because the Gateway daemon is at an earlier product release than the Client application.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgErrInvalidRequestType">
+      <summary>The protocol handler for the port that the Client application is connected to does not accept the request type sent.
+      This can occur if your application connects to the Gateway daemon statistics port instead of the TCP/IP port.</summary>
+    </member>
+    <member name="F:IBM.CTG.GatewayReturnCode.CtgErrSystemError">
+      <summary>An internal system error occurred. If the problem persists, collect application
+      and Gateway daemon trace and contact your IBM service representative.</summary>
+    </member>
+    <member name="T:IBM.CTG.EciReturnCode">
+      <summary>Defines External Call Interface (ECI) return codes.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrRolledBack">
+      <summary>An attempt was made to commit a logical unit of work, but the CICS server was
+      unable to commit the changes, and backed them out instead.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrMaxSessions">
+      <summary>There are insufficient communication resources to complete the request.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrMaxSystems">
+      <summary>The CICS TG has reached its limit on the maximum number of CICS servers.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrSecurityError">
+      <summary>An invalid combination of <see cref="P:IBM.CTG.EciRequest.UserId" /> and <see cref="P:IBM.CTG.EciRequest.Password" /> was specified.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrUnknownServer">
+      <summary>The target CICS server is unknown to the Gateway daemon.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrNoSessions">
+      <summary>There are insufficient communication resources to communicate with the target CICS server.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrResourceShortage">
+      <summary>There are insufficient resources to communicate with the target CICS server;
+      details might be available in the CICS TG error log files.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrLuwToken">
+      <summary>The <see cref="P:IBM.CTG.EciRequest.LuwToken" /> property is not valid.
+      There is no active unit of work associated with the specified LUW token.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrLuwToken">
+      <summary>The <see cref="P:IBM.CTG.EciRequest.LuwToken" /> property is not valid.
+      There is no active unit of work associated with the specified LUW token.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrInvalidCallType">
+      <summary>The ECI request contains a <see cref="T:IBM.CTG.Channel" /> and the destination CICS server is not a defined IPIC server.
+      -or-
+   
+      The active CICS request exit rejected the request.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrTransactionAbend">
+      <summary>The CICS transaction abended. The abend code is available in the
+      <see cref="P:IBM.CTG.EciRequest.AbendCode" /> property.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrResponseTimeout">
+      <summary>The ECI call timed out while waiting for a response.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrRequestTimeout">
+      <summary>The timeout interval expired before the request was sent to CICS.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrCicsDied">
+      <summary>Communication with the target CICS server was interrupted during the request.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrNoCics">
+      <summary>Communication with the target CICS server could not be established.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrInvalidExtendMode">
+      <summary>The <see cref="P:IBM.CTG.EciRequest.ExtendMode" /> property is not valid.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciErrInvalidDataLength">
+      <summary>The protocol used to communicate with CICS is unable to send or receive the
+      specified COMMAREA size.</summary>
+    </member>
+    <member name="F:IBM.CTG.EciReturnCode.EciNoError">
+      <summary>No error.</summary>
+    </member>
+    <member name="T:IBM.CTG.EsiReturnCode">
+      <summary>Defines External Security Interface (ESI) return codes.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiNoError">
+      <summary>No error.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrNoCics">
+      <summary>Communication with the target CICS server could not be established.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrCicsDied">
+      <summary>Communication with the target CICS server was interrupted during the request.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrNoSessions">
+      <summary>There are insufficient communication resources to communicate with the target CICS server.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrUnknownServer">
+      <summary>The target CICS server is unknown to the Gateway daemon.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrResourceShortage">
+      <summary>There are insufficient resources to communicate with the target CICS server;
+      details might be available in the CICS TG error log files.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrSecurityError">
+      <summary>An error was detected by the External Security Manager.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrNullUserid">
+      <summary>The user ID supplied was an empty string or <see langword="null" />.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrNullPassword">
+      <summary>The password supplied was an empty string or <see langword="null" />.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrNullNewPassword">
+      <summary>The new password supplied was an empty string or <see langword="null" />.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrPemNotSupported">
+      <summary>Password Expiry Management is not supported by the CICS server or is not supported for the protocol used to communicate with the CICS server.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrPemNotActive">
+      <summary>Password Expiry Management is not enabled on the CICS server or the request was rejected by the active CICSRequestExit.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrPasswordExpired">
+      <summary>The password or password phrase has expired.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrPasswordInvalid">
+      <summary>The password or password phrase is invalid.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrPasswordRejected">
+      <summary>The new password or password phrase does not conform to the standards defined by the External Security Manager.</summary>
+    </member>
+    <member name="F:IBM.CTG.EsiReturnCode.EsiErrUseridInvalid">
+      <summary>The user ID is not known to the External Security Manager.</summary>
+    </member>
+    <member name="T:IBM.CTG.TraceLevel">
+      <summary>Defines trace levels for IBM.CTG.Client.dll.</summary>
+    </member>
+    <member name="F:IBM.CTG.TraceLevel.CtgTrcDisabled">
+      <summary>Disables tracing.</summary>
+    </member>
+    <member name="F:IBM.CTG.TraceLevel.CtgTrcLevel1">
+      <summary>Includes exception trace points only.</summary>
+    </member>
+    <member name="F:IBM.CTG.TraceLevel.CtgTrcLevel2">
+      <summary>Includes event trace points and all CtgTrcLevel1 trace points.</summary>
+    </member>
+    <member name="F:IBM.CTG.TraceLevel.CtgTrcLevel3">
+      <summary>Includes function entry and exit trace points and all CtgTrcLevel1 and CtgTrcLevel2 trace points.</summary>
+    </member>
+    <member name="F:IBM.CTG.TraceLevel.CtgTrcLevel4">
+      <summary>Includes debug trace points and all CtgTrcLevel1, CtgTrcLevel2 and CtgTrcLevel3 trace points.</summary>
+    </member>
+    <member name="T:IBM.CTG.ContainerType">
+      <summary>Defines the data type held within a <see cref="T:IBM.CTG.Container" />.</summary>
+    </member>
+    <member name="F:IBM.CTG.ContainerType.BIT">
+      <summary>The type for a <see cref="T:IBM.CTG.Container" /> holding binary data.</summary>
+    </member>
+    <member name="F:IBM.CTG.ContainerType.CHAR">
+      <summary>The type for a <see cref="T:IBM.CTG.Container" /> holding character data.</summary>
+    </member>
+    <member name="T:IBM.CTG.SslGatewayConnection">
+      <summary>Represents a Secure Sockets Layer (SSL) connection to a Gateway daemon.</summary>
+    </member>
+    <member name="M:IBM.CTG.SslGatewayConnection.#ctor(System.String,System.Int32)">
+      <summary>Creates a new SSL connection to a Gateway daemon with default SSL properties.</summary>
+      <param name="hostName">The host name of the Gateway daemon to connect to.</param>
+      <param name="port">The port that the Gateway daemon is accepting SSL requests on.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> is <see langword="null" />.
+      </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">The port number is not valid.</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        The host name did not resolve to a valid IP address.
+      -or-
+   
+        Failed to establish a connection with the Gateway daemon.
+      -or-
+   
+        The connection to the Gateway daemon has been lost. 
+      </exception>
+      <exception cref="T:System.Security.Authentication.AuthenticationException">Authentication failed.</exception>
+      <exception cref="T:System.Security.SecurityException">A caller higher in the call stack does not have permission for the
+      requested operation.</exception>
+      <exception cref="T:IBM.CTG.ClientConfigurationException">
+        The value of CtgApplid or CtgApplidQualifier specified in the application configuration file is longer than 8 characters.
+      </exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="M:IBM.CTG.SslGatewayConnection.#ctor(System.String,System.Int32,IBM.CTG.SslProperties)">
+      <summary>Creates a new SSL connection to a Gateway daemon with the specified SSL properties.</summary>
+      <param name="hostName">The host name of the Gateway daemon to connect to.</param>
+      <param name="port">The port that the Gateway daemon is accepting SSL requests on.</param>
+      <param name="sslProperties">Properties for the SSL connection.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> is <see langword="null" />.
+      </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        The port number is not valid.
+      -or-
+   
+        The EnabledSslProtocols value in the SSL properties is not valid.
+      </exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        The host name did not resolve to a valid IP address.
+      -or-
+   
+        Failed to establish a connection with the Gateway daemon.
+      -or-
+   
+        The connection to the Gateway daemon has been lost. 
+      </exception>
+      <exception cref="T:System.Security.Authentication.AuthenticationException">Authentication failed.</exception>
+      <exception cref="T:System.Security.SecurityException">A caller higher in the call stack does not have permission for the
+      requested operation.</exception>
+      <exception cref="T:IBM.CTG.ClientConfigurationException">
+        The value of CtgApplid or CtgApplidQualifier specified in the application configuration file is longer than 8 characters.
+      </exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="M:IBM.CTG.SslGatewayConnection.#ctor(System.String,System.Int32,System.Int32,IBM.CTG.SslProperties)">
+      <summary>Creates a new connection to a Gateway daemon with the specified timeout and SSL properties.</summary>
+      <param name="hostName">The host name of the Gateway daemon to connect to.</param>
+      <param name="port">The port that the Gateway daemon is accepting SSL requests on.</param>
+      <param name="timeout">The connection timeout, in seconds, or zero to specify no timeout.</param>
+      <param name="sslProperties">Properties for the SSL connection.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> is <see langword="null" />.
+      </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        The port number is not valid.
+      -or-
+   The timeout value is not valid.
+      -or-
+   
+        The EnabledSslProtocols value in the SSL properties is not valid.
+      </exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        The host name did not resolve to a valid IP address.
+      -or-
+   
+        The connection timed out.
+      -or-
+   
+        Failed to establish a connection with the Gateway daemon.
+      -or-
+   
+        The connection to the Gateway daemon has been lost. 
+      </exception>
+      <exception cref="T:System.Security.Authentication.AuthenticationException">Authentication failed.</exception>
+      <exception cref="T:System.Security.SecurityException">A caller higher in the call stack does not have permission for the
+      requested operation.</exception>
+      <exception cref="T:IBM.CTG.ClientConfigurationException">
+        The value of CtgApplid or CtgApplidQualifier specified in the application configuration file is longer than 8 characters.
+      </exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="M:IBM.CTG.SslGatewayConnection.#ctor(System.String,System.Int32,System.Int32,System.String,System.String,IBM.CTG.SslProperties)">
+      <summary>Creates a new connection to a Gateway daemon with the specified timeout and SSL properties. The connection will use the specified APPLID 
+      and APPLID qualifier for transaction tracking.</summary>
+      <param name="hostName">The host name of the Gateway daemon to connect to.</param>
+      <param name="port">The port that the Gateway daemon is accepting SSL requests on.</param>
+      <param name="timeout">The connection timeout, in seconds, or zero to specify no timeout.</param>
+      <param name="applid">The client APPLID (maximum 8 characters).</param>
+      <param name="applidQualifier">The client APPLID qualifier (maximum 8 characters).</param>
+      <param name="sslProperties">Properties for the SSL connection.</param>
+      <exception cref="T:System.ArgumentException">
+        Value of <paramref name="applid" /> or <paramref name="applidQualifier" /> is longer than 8 characters.
+      </exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> is <see langword="null" />.
+      </exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        The port number is not valid.
+      -or-
+   The timeout value is not valid.
+      -or-
+   
+        The EnabledSslProtocols value in the SSL properties is not valid.
+      </exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        The host name did not resolve to a valid IP address.
+      -or-
+   
+        The connection timed out.
+      -or-
+   
+        Failed to establish a connection with the Gateway daemon.
+      -or-
+   
+        The connection to the Gateway daemon has been lost. 
+      </exception>
+      <exception cref="T:System.Security.Authentication.AuthenticationException">Authentication failed.</exception>
+      <exception cref="T:System.Security.SecurityException">A caller higher in the call stack does not have permission for the
+      requested operation.</exception>
+      <exception cref="T:IBM.CTG.ClientConfigurationException">
+        The value of CtgApplid or CtgApplidQualifier specified in the application configuration file is longer than 8 characters.
+      </exception>
+      <exception cref="T:IBM.CTG.GatewayException">An error occurred within the Gateway daemon.</exception>
+    </member>
+    <member name="P:IBM.CTG.SslGatewayConnection.CipherAlgorithm">
+      <summary>Gets the bulk encryption algorithm used by the connection.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslGatewayConnection.CipherStrength">
+      <summary>Gets the strength of the cipher algorithm.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslGatewayConnection.ClientCertificate">
+      <summary>Gets the certificate used to authenticate the client application.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslGatewayConnection.GatewayCertificate">
+      <summary>Gets the certificate used to authenticate the Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslGatewayConnection.SslProtocol">
+      <summary>Gets a value that indicates the security protocol used to authenticate this connection.</summary>
+    </member>
+    <member name="T:IBM.CTG.SslProperties">
+      <summary>Contains properties used to establish an <see cref="T:IBM.CTG.SslGatewayConnection" /> to a Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslProperties.ClientCertificates">
+      <summary>Gets or sets a collection of certificates used to authenticate the client application.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslProperties.GatewayCertificateValidationCallback">
+      <summary>Gets or sets a callback delegate responsible for validating the certificate supplied by the Gateway daemon.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslProperties.ClientCertificateSelectionCallback">
+      <summary>Gets or sets a callback delegate responsible for selecting the client certificate used for authentication.</summary>
+    </member>
+    <member name="P:IBM.CTG.SslProperties.EnabledSslProtocols">
+      <summary>Gets or sets the SSL protocols that can be used for authentication.</summary>
+    </member>
+    <member name="M:IBM.CTG.SslProperties.#ctor()">
+      <summary>Constructs a new <see cref="T:IBM.CTG.SslProperties" /> with default SSL connection properties.</summary>
+    </member>
+    <member name="M:IBM.CTG.SslProperties.#ctor(System.Security.Authentication.SslProtocols)">
+      <summary>Constructs a new <see cref="T:IBM.CTG.SslProperties" /> with the specified enabled SSL protocols.</summary>
+      <param name="enabledSslProtocols">The SSL protocols that can be used for authentication.</param>
+    </member>
+    <member name="M:IBM.CTG.SslProperties.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate)">
+      <summary>Constructs a new <see cref="T:IBM.CTG.SslProperties" /> with a single client certificate.</summary>
+      <param name="clientCertificate">An <see cref="T:System.Security.Cryptography.X509Certificates.X509Certificate" /> that is used
+      for client authentication.</param>
+    </member>
+    <member name="M:IBM.CTG.SslProperties.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Authentication.SslProtocols)">
+      <summary>Constructs a new <see cref="T:IBM.CTG.SslProperties" /> with a single client certificate and specified enabled SSL protocols.</summary>
+      <param name="clientCertificate">An <see cref="T:System.Security.Cryptography.X509Certificates.X509Certificate" /> that is used
+      for client authentication.</param>
+      <param name="enabledSslProtocols">The SSL protocols that can be used for authentication.</param>
+    </member>
+    <member name="M:IBM.CTG.SslProperties.#ctor(System.Security.Cryptography.X509Certificates.X509CertificateCollection)">
+      <summary>Constructs a new <see cref="T:IBM.CTG.SslProperties" /> with the specified client certificate collection.</summary>
+      <param name="clientCertificates">An <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" />
+      containing certificates used for client authentication.</param>
+    </member>
+    <member name="M:IBM.CTG.SslProperties.#ctor(System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols)">
+      <summary>Constructs a new <see cref="T:IBM.CTG.SslProperties" /> with the specified client certificate collection
+      and specified enabled SSL protocols.</summary>
+      <param name="clientCertificates">An <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" />
+      containing certificates used for client authentication.</param>
+      <param name="enabledSslProtocols">The SSL protocols that can be used for authentication.</param>
+    </member>
+    <member name="T:IBM.CTG.Trace">
+      <summary>Provides methods for controlling trace in IBM.CTG.Client.dll.</summary>
+    </member>
+    <member name="P:IBM.CTG.Trace.TraceLevel">
+      <summary>Gets or sets the trace level.</summary>
+    </member>
+    <member name="P:IBM.CTG.Trace.DataDumpLength">
+      <summary>Gets or sets the maximum amount of data traced in each data block at <see cref="F:IBM.CTG.TraceLevel.CtgTrcLevel4" />.</summary>
+    </member>
+    <member name="P:IBM.CTG.Trace.DataDumpOffset">
+      <summary>Gets or sets the starting offset in each data blocks when tracing at <see cref="F:IBM.CTG.TraceLevel.CtgTrcLevel4" />.</summary>
+    </member>
+    <member name="M:IBM.CTG.Trace.SetTraceFile(System.String)">
+      <summary>This method is obsolete and should no longer be used.</summary>
+      <param name="fileName">The name of the file to use for ctgclient.dll trace, or <see langword="null" /> to revert to the standard error output stream.</param>
+      <exception cref="T:System.IO.IOException">The trace file could not be created at the specified location.</exception>
+    </member>
+    <member name="M:IBM.CTG.Trace.DumpState">
+      <summary>Traces internal debugging information.</summary>
+    </member>
+  </members>
+</doc>

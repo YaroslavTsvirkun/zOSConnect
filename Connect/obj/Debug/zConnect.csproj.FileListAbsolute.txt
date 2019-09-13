@@ -1,0 +1,13 @@
+C:\Users\User\source\repos\Connect\Connect\obj\Debug\zConnect.csprojAssemblyReference.cache
+C:\Users\User\source\repos\Connect\Connect\obj\Debug\zConnect.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Connect\Connect\obj\Debug\Connect.exe
+C:\Users\User\source\repos\Connect\Connect\obj\Debug\Connect.pdb
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\Connections.config
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\Connect.exe.config
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\Connect.exe
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\Connect.pdb
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\IBM.CTG.Client.dll
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\IBM.Data.DB2.dll
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\IBM.Data.DB2.Entity.dll
+C:\Users\User\source\repos\Connect\Connect\bin\Debug\IBM.CTG.Client.xml
+C:\Users\User\source\repos\Connect\Connect\obj\Debug\zConnect.csproj.CopyComplete
